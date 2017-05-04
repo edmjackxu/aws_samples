@@ -1,0 +1,24 @@
+To attach an IAM role to an instance using the AWS CLI
+
+If required, describe your instances to get the ID of the instance to which to attach the role.
+
+Copy
+$ aws ec2 describe-instances 
+Use the associate-iam-instance-profile command to attach the IAM role to the instance by specifying the instance profile. You can use the Amazon Resource Name (ARN) of the instance profile, or you can use its name.
+
+Copy
+$ aws ec2 associate-iam-instance-profile --instance-id i-1234567890abcdef0 --iam-instance-profile Name="TestRole-1"
+
+{
+    "IamInstanceProfileAssociation": {
+        "InstanceId": "i-1234567890abcdef0", 
+        "State": "associating", 
+        "AssociationId": "iip-assoc-0dbd8529a48294120", 
+        "IamInstanceProfile": {
+            "Id": "AIPAJLNLDX3AMYZNWYYAY", 
+            "Arn": "arn:aws:iam::123456789012:instance-profile/TestRole-1"
+        }
+    }
+}
+
+
